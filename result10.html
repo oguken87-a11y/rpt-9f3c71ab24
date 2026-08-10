@@ -4,17 +4,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="robots" content="noindex">
-<title>年の差恋愛「3つのつまずき診断」｜結果画面モック（3型10パターン）</title>
+<title>年の差恋愛「3つのつまずき診断」｜結果画面モック（4カテゴリ11パターン・v8文言）</title>
 <style>
   :root{
-    --bg:#eef2f7; --card:#ffffff; --card2:#dfe7f1; --line:#c8d4e3;
+    --bg:#eef2f7; --card:#ffffff; --line:#c8d4e3;
     --tx:#1c2b3a; --sub:#54657c; --gold:#16437e; --gold2:#2e6fca;
-    --c-deai:#2e86de; --c-kaiwa:#e67e22; --c-kyori:#d64561;
+    --c-deai:#2e86de; --c-kaiwa:#e67e22; --c-kyori:#d64561; --c-goal:#1e9e6a;
   }
   *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
   body{background:var(--bg);color:var(--tx);
     font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic Medium","Yu Gothic",Meiryo,sans-serif;
-    font-size:16px;line-height:1.75;min-height:100vh;padding-bottom:80px}
+    font-size:16px;line-height:1.75;min-height:100vh;padding-bottom:24px}
 
   /* ═══ 操作バー（本番には無い・確認用） ═══ */
   .topbar{position:sticky;top:0;z-index:50;background:rgba(238,242,247,.94);backdrop-filter:blur(8px);
@@ -28,48 +28,28 @@
   .tgl{display:flex;align-items:center;gap:6px;font-size:12.5px;color:var(--sub);cursor:pointer;
     border:1px solid var(--line);background:#fff;border-radius:999px;padding:6px 12px;font-family:inherit}
   .tgl b{color:var(--gold2)}
-  .tabs{display:flex;gap:6px;overflow-x:auto;max-width:1180px;margin:0 auto;padding-bottom:2px;scrollbar-width:thin}
-  .tab{flex:0 0 auto;background:#fff;border:1.5px solid var(--line);color:var(--sub);
-    border-radius:999px;padding:6px 13px;font-size:12.5px;cursor:pointer;font-family:inherit;white-space:nowrap;line-height:1.4}
-  .tab .tn{font-weight:700;margin-right:5px}
-  .tab.on{color:#fff;border-color:transparent}
-  .tab.on.t-deai{background:var(--c-deai)} .tab.on.t-kaiwa{background:var(--c-kaiwa)} .tab.on.t-kyori{background:var(--c-kyori)}
-  .tabsep{flex:0 0 auto;width:1px;background:var(--line);margin:4px 4px}
+  .memo{max-width:1180px;margin:0 auto;font-size:11.5px;color:#93a1b5;line-height:1.6;padding-top:6px}
 
   /* ═══ 本番と同一の結果画面スタイル ═══ */
   .wrap{max-width:560px;margin:0 auto;padding:20px 18px 40px}
   .brand{color:var(--gold);font-size:13px;letter-spacing:.2em;text-align:center;margin:14px 0 10px}
-  .rlead{color:var(--sub);font-size:14px;text-align:center;margin:8px 0 14px}
-  .badge{display:block;width:fit-content;margin:0 auto 16px;padding:5px 18px;border-radius:999px;
-    font-size:14px;font-weight:700;color:#fff}
+  .rlead{color:var(--sub);font-size:14px;text-align:center;margin:8px 0 16px}
+  .badgewrap{text-align:center;margin:4px 0 20px}
+  .badgelabel{display:block;font-size:11.5px;color:#93a1b5;letter-spacing:.16em;margin-bottom:7px}
+  .badge{display:inline-block;padding:3px 14px;border-radius:999px;font-size:12.5px;font-weight:700;color:#fff}
+  .typename{display:block;font-size:26px;line-height:1.35;margin-top:10px;font-weight:700;letter-spacing:.02em}
+
   .rcard{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin-bottom:14px}
   .rlabel{font-size:12.5px;color:var(--gold);letter-spacing:.08em;margin-bottom:8px;font-weight:700}
   .rtitle{font-size:20px;font-weight:700;line-height:1.6}
   .rcard p{font-size:15px}
-  .sigs{margin-top:10px;padding-left:0;list-style:none}
-  .sigs li{font-size:14px;color:var(--sub);border-left:3px solid var(--gold);padding:3px 0 3px 10px;margin:6px 0}
-  .sigcap{font-size:12.5px;color:var(--sub);margin-top:12px}
   .zoombox{border:1.5px solid var(--gold2);background:rgba(46,111,202,.05)}
   .avoidbox{border:1.5px solid #e0b4bc;background:rgba(214,69,97,.045)}
   .avoidbox .rlabel{color:var(--c-kyori)}
+  .ph{background:rgba(46,111,202,.13);border-radius:3px;padding:0 2px;font-weight:700}
   .btn{display:block;width:100%;border:0;border-radius:999px;cursor:pointer;text-align:center;
     font-weight:700;font-size:18px;padding:17px 10px;color:#fff;font-family:inherit;
     background:linear-gradient(180deg,var(--gold2),var(--gold));box-shadow:0 6px 18px rgba(22,67,126,.30)}
-  .cta-note{text-align:center;color:var(--sub);font-size:12px;margin-top:10px}
-
-  /* ═══ ファネル図（追加提案A） ═══ */
-  .funnel{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 18px;margin-bottom:14px}
-  .funnel .fcap{font-size:12.5px;color:var(--sub);margin-bottom:8px}
-  .frow{display:flex;align-items:center;gap:10px;padding:6px 0;border-bottom:1px dashed var(--line);font-size:14.5px}
-  .frow:last-child{border-bottom:0}
-  .fmark{flex:0 0 22px;text-align:center;font-weight:700}
-  .fname{flex:1;font-weight:700}
-  .fstat{font-size:12.5px;color:var(--sub)}
-  .frow.done .fmark{color:#27ae60}
-  .frow.done .fname{color:var(--tx)}
-  .frow.here{border-radius:8px;padding-left:6px;padding-right:6px}
-  .frow.here .fname,.frow.here .fstat,.frow.here .fmark{font-weight:700}
-  .frow.todo .fmark,.frow.todo .fname,.frow.todo .fstat{color:#a8b5c6}
 
   /* ═══ 一覧モード ═══ */
   .grid{max-width:1180px;margin:0 auto;padding:18px 14px 40px;display:grid;gap:18px;grid-template-columns:1fr}
@@ -80,254 +60,316 @@
   .gbody{padding:4px 14px 18px}
   .gbody .wrap{padding:8px 4px 0}
 
-  /* ═══ 検証用パネル ═══ */
-  details.dev{margin-top:22px;color:var(--sub);font-size:13px}
-  details.dev summary{cursor:pointer;color:#93a1b5;font-size:12.5px}
-  .devpanel{background:var(--card);border:1px dashed var(--line);border-radius:12px;padding:12px 14px;margin-top:10px;font-size:12.5px;line-height:1.8}
-  .devpanel b{color:var(--gold2)}
-  .navfoot{position:fixed;left:0;right:0;bottom:0;z-index:50;background:rgba(238,242,247,.94);backdrop-filter:blur(8px);
-    border-top:1px solid var(--line);padding:9px 14px;display:flex;align-items:center;gap:10px;justify-content:center}
-  .navfoot button{background:#fff;border:1.5px solid var(--gold2);color:var(--gold2);border-radius:999px;
-    padding:8px 18px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit}
-  .navfoot button:disabled{opacity:.3;cursor:default}
-  .navfoot .cnt{font-size:13px;color:var(--sub);min-width:74px;text-align:center;font-weight:700}
-  .hint{text-align:center;font-size:11.5px;color:#93a1b5;margin-top:2px}
 </style>
 </head>
 <body>
 
 <div class="topbar">
   <div class="row1">
-    <span class="tbtitle">年の差恋愛「3つのつまずき診断」｜結果画面モック（3型10パターン）</span>
-    <div class="seg">
-      <button id="m1" class="on" onclick="setMode('one')">1枚ずつ</button>
-      <button id="m2" onclick="setMode('all')">全10パターン</button>
-    </div>
-    <button class="tgl" onclick="toggleFunnel()">ファネル図 <b id="fnstate">ON</b></button>
+    <span class="tbtitle">年の差恋愛「3つのつまずき診断」｜結果画面モック（4カテゴリ11パターン・v8文言）</span>
+    <button class="tgl" onclick="togglePh()">【　】差込 <b id="phstate">OFF</b></button>
   </div>
-  <div class="tabs" id="tabs"></div>
+  <p class="memo">本文1〜5は <b>07_診断結果文言_修正用_v8.docx</b> の全文をそのまま反映。</p>
 </div>
 
 <div id="stage"></div>
 
-<div class="navfoot" id="navfoot">
-  <button id="prev" onclick="step(-1)">← 前へ</button>
-  <span class="cnt" id="cnt"></span>
-  <button id="next" onclick="step(1)">次へ →</button>
-</div>
-
 <script>
 'use strict';
 
-/* ════════════════════════════════════════════
-   結果文言（04_結果文言案_3型10パターン_v1.md 準拠）
-   ペルソナ回答は判定ロジック（01）で該当サブに落ちる組合せ
-   ════════════════════════════════════════════ */
-const TYPES={
-  deai :{name:'① 出会い型', color:'var(--c-deai)',  cls:'t-deai'},
-  kaiwa:{name:'② 会話型',   color:'var(--c-kaiwa)', cls:'t-kaiwa'},
-  kyori:{name:'③ 距離型',   color:'var(--c-kyori)', cls:'t-kyori'}
+/* ════════════════════════════════════════════════════════
+   結果文言 = 07_診断結果文言_修正用_v8.docx（2026-08-10）準拠
+   ・バッジ = どこでつまずいているか（① 出会い／② 会話／③ 距離の縮め方／④ 成功目前）
+   ・進行マップ = 出会い → 会話 → 距離 → 成功目前
+   ・【年代】【好みの年代】はペルソナ回答で差し込み表示（上部トグルでOFF可）
+   ════════════════════════════════════════════════════════ */
+const CATS={
+"deai": {
+"no": "①",
+"name": "出会い",
+"color": "var(--c-deai)",
+"cls": "t-deai",
+"step": 0
+},
+"kaiwa": {
+"no": "②",
+"name": "会話",
+"color": "var(--c-kaiwa)",
+"cls": "t-kaiwa",
+"step": 1
+},
+"kyori": {
+"no": "③",
+"name": "距離の縮め方",
+"color": "var(--c-kyori)",
+"cls": "t-kyori",
+"step": 2
+},
+"goal": {
+"no": "④",
+"name": "成功目前",
+"color": "var(--c-goal)",
+"cls": "t-goal",
+"step": 3
+}
 };
-/* ファネル: 0=未通過(グレー) 1=通過 2=今ここ */
 const D=[
-{ id:'1-A', type:'deai', sub:'start', tab:'未経験スタート',
-  lead:'60代のあなたが、20代の女性との「彼女」を目指す場合──',
-  funnel:[2,0,0,0],
-  title:'あなたは今、「女性と出会う回数」で止まっています',
-  reason:'まずお伝えしたいのは、あなたが不器用だからでも、話が下手だからでもない、ということです。回答を見るかぎり、女性と会うこと自体がこれからの段階です。野球でいえば、バットの振り方を直す前に、まず打席に立つ回数が足りていない状態。打席に立っていない人は、何回素振りをしてもヒットは出ません。逆に言えば、直す場所がハッキリしている分、いちばん伸びしろがあります。',
-  sigs:['新規の女性と会えている数：月0人','現在の出会い手段：特にやっていない','女性とのデート経験：なし'],
-  fix:'会話の練習は、いったん忘れてください。やることは1つだけです。「自分が行く場所」を1つに決めて、今月中に女性1人と実際に会うこと。うまく話せなくて構いません。会った、という事実だけが次につながります。',
-  avoid:'「もう少し準備してから」「自信がついてから」と先に延ばすこと。順番が逆です。自信は、会う前ではなく会った後にしかつきません。もう1つ、いくつもの出会い方に同時に手を出すのもやめてください。どれも中途半端になって、続きません。',
-  zoom:'60代のあなたが20代の女性と実際に会える場所は、限られています。しかもこれは、ネットで調べても出てきません（うまくいっている人ほど書かないからです）。無料Zoomでは、あなたがどこから始めるのが一番早いか、場所を1つに絞ってお伝えします。終わったときには「明日やること」が決まっている状態にします。',
-  persona:'Q1=60代／Q3=20代／Q4=彼女／Q5=0人／Q7=今は特にやっていない／Q8=0人／Q10=深い関係になったことがない／Q11=女性とデートをしたことがない／Q12=女性と会話したことがない'
+{
+"id": "1-A",
+"cat": "deai",
+"type": "仕事一筋タイプ",
+"age": "60代",
+"pref": "20代",
+"goal": "彼女",
+"who": "新しい女性に会えておらず、女性と会うこと自体がこれからの人",
+"stuck": "あなたは、自分に合った出会い方がわかっていません。",
+"reason": "あなたはまだ出会えていない状態です。出会えていないということは、何も行動していないか、出会い方が間違っているかのどちらかです。これまで仕事一筋だったからでしょうか？",
+"fix": "あなたが今やることは、まずは自分にあった出会い方を知ることです。行動できていないのも、出会い方がわからないからではないでしょうか。まずは、あなたの目標を達成するための、正しい出会い方を学ぶ必要があります。",
+"avoid": "「もう少し準備してから」「自信がついてから」と先延ばしにすること。順番が逆です。自信は、行動した後についてきます。また、行動しないと直すべき課題もわかりません。",
+"zoom": "無料Zoom勉強会では、【年代】のあなたが【好みの年代】の女性と出会うには、どの出会い方を選べばいいのかお伝えします。多くの人が選ぶ定番の手段が、年の差恋愛では不利になる理由もわかります。勉強会が終わる頃には、「自分は何から始めればいいのか」がわかります。",
+"sigs": [
+"新規の女性と会えている数：月0人",
+"現在の出会い手段：今は特にやっていない",
+"女性とのデート経験：なし"
+],
+"persona": "Q1=60代／Q3=20代／Q4=彼女／Q5=0人／Q7=今は特にやっていない／Q8=0人／Q10=深い関係になったことがない／Q11=女性とデートをしたことがない／Q12=女性と会話したことがない"
 },
-{ id:'1-B', type:'deai', sub:'mismatch', tab:'手段ミスマッチ',
-  lead:'50代のあなたが、30代の女性との「彼女」を目指す場合──',
-  funnel:[2,0,0,0],
-  title:'あなたは今、「出会う場所の選び方」で止まっています',
-  reason:'あなたは、動いていないわけではありません。回答では、今の出会い手段として「マッチングアプリ」「婚活パーティー」を選んでいます。それなのに新しい女性と会えていないのは、努力が足りないからではなく、その場所にあなたの相手になる女性が少ないからです。魚のいない池では、釣り方をどれだけ工夫しても釣れません。変えるべきは腕ではなく、池のほうです。',
-  sigs:['新規の女性と会えている数：月0人','現在の出会い手段：マッチングアプリ・婚活パーティー'],
-  fix:'今の方法を、いったん止めてください。そのうえで、あなたの年齢層が実際に相手にされている場所へ、1つだけ移ること。同じ場所で回数を増やしても、結果は変わりません。',
-  avoid:'プロフィールの写真や文章を、これ以上作り込まないこと。場所が合っていないときは、中身をどれだけ磨いても数字は動きません。時間とお金を、いちばん損する直し方です。',
-  zoom:'つらいのは、動いているのに結果が出ないことです。原因が「腕」なのか「場所」なのかは、自分では見分けがつきません。無料Zoomでは、あなたが今使っている「マッチングアプリ」「婚活パーティー」を続けるべきか、やめるべきかをその場で判定します。続けるなら何を変えるか、やめるなら次にどこへ行くかまでお伝えします。',
-  persona:'Q1=50代／Q3=30代／Q4=彼女／Q5=1人～5人／Q7=マッチングアプリ・婚活パーティー／Q8=0人／Q11=3000円～10000円'
+{
+"id": "1-B",
+"cat": "deai",
+"type": "努力空回りタイプ",
+"age": "50代",
+"pref": "30代",
+"goal": "彼女",
+"who": "アプリなど何か手段はやっているのに、新規の女性と出会えていない人",
+"stuck": "あなたは、自分に合わない出会い方をしています。",
+"reason": "あなたは、ちゃんと行動できている人です。それなのに新しい女性と会えていないのは、努力が足りないからではなく、自分にとって不利な場所で相手を見つけようとしている可能性が高いです。あなたにとって不利な出会い方で頑張っても、その努力は空回りしてしまいます。",
+"fix": "あなたに大事なことはこのまま同じことを続けることではありません。【年代】のあなたが【好みの年代】の女性と実際に会えるやり方に変えることです。今のまま回数を増やしても、結果は変わりません。",
+"avoid": "今のままのやり方を続けること。あなたの恋愛がうまくいかないのは、あなたの魅力や相性のせいではなく、やり方の問題です。",
+"zoom": "行動しているのに理想の女性に出会えないのは、つらいことです。しかし悲観する必要はありません。たいていは、自分に不利な出会い方を選んでいるだけです。無料Zoom勉強会では、【年代】のあなたが【好みの年代】の女性と出会うにはどの出会い方が有利なのか、その見極め方と、今の努力が報われない本当の理由をお伝えします。",
+"sigs": [
+"新規の女性と会えている数：月0人",
+"現在の出会い手段：マッチングアプリ・婚活パーティー"
+],
+"persona": "Q1=50代／Q3=30代／Q4=彼女／Q5=1人～5人／Q7=マッチングアプリ・婚活パーティー／Q8=0人／Q11=3000円～10000円"
 },
-{ id:'1-C', type:'deai', sub:'restart', tab:'再起動',
-  lead:'60代のあなたが、20代の女性との「彼女」を目指す場合──',
-  funnel:[2,0,0,0],
-  title:'あなたは今、「動き出すきっかけ」で止まっています',
-  reason:'あなたには、女性と出会えていた時期があります。つまり、やり方を知らないわけではありません。今止まっているのは腕ではなく、動き出すきっかけのほうです。ただし正直にお伝えすると、恋愛の現場は数年で変わります。昔のやり方のまま戻ると「もう通用しない」と感じて、そこで本当に止まってしまう人が多いです。',
-  sigs:['新規の女性と会えている数：月0人','現在の出会い手段：特にやっていない'],
-  fix:'完璧に戻そうとしないこと。今月、1回だけでいいので、女性と会う場を作ってください。目的は成果ではなく「今の自分がどこまで通用するか」を確かめることです。ここがわかれば、直す場所は自動的に決まります。',
-  avoid:'昔うまくいった話し方・口説き方を、そのまま繰り返さないこと。相手の年代が変わっていれば、当時の正解は今の不正解です。',
-  zoom:'一度離れた人がつまずく場所は、だいたい決まっています。無料Zoomでは、あなたの昔のやり方のうち「今も使えるもの」と「今はもう捨てたほうがいいもの」を仕分けして、まずどこへ戻ればいいかを1つ決めてお伝えします。',
-  persona:'Q1=60代／Q3=20代／Q4=彼女／Q5=6人～10人／Q7=今は特にやっていない／Q8=0人'
+{
+"id": "1-C",
+"cat": "deai",
+"type": "過去の栄光引きずりタイプ",
+"age": "60代",
+"pref": "20代",
+"goal": "彼女",
+"who": "過去には女性と出会えていたが、今は出会いの行動を何もしていない人",
+"stuck": "あなたは、昔の成功体験を引きずって、止まっています。",
+"reason": "あなたは、以前は女性と出会えていたのに、今は出会えていないという状態です。そうなってしまうのは、あなたが過去の成功体験を引きずって、自分の年代と、狙う女性の年代によって、ベストなやり方が違うということがわかっていない可能性が高いです。",
+"fix": "あなたに必要なのは、今のあなたにあった出会い方が何かを知ることです。ベストな出会い方はあなたの年代と狙う女性の年代によって変わります。",
+"avoid": "あなたがやってはいけないことは、「歳をとったからモテなくなった」と思い込むことです。自分の年代と、狙う女性の年代が変われば、ベストな出会い方が変わって当然です。",
+"zoom": "若い頃に恋愛がうまくいっていた人ほど、同じやり方を続けて止まります。無料Zoom勉強会では、【年代】になったあなたが【好みの年代】の女性を狙うなら、出会い方をどう変えるべきなのか、その考え方をお伝えします。昔のやり方のうち、何が今も使えて、何がもう通用しないのかもわかります。",
+"sigs": [
+"新規の女性と会えている数：月0人",
+"現在の出会い手段：今は特にやっていない",
+"これまでに深い関係になった女性：6人～10人"
+],
+"persona": "Q1=60代／Q3=20代／Q4=彼女／Q5=6人～10人／Q7=今は特にやっていない／Q8=0人"
 },
-{ id:'2-A', type:'kaiwa', sub:'entry', tab:'会話の入り口',
-  lead:'50代のあなたが、20代の女性との「彼女」を目指す場合──',
-  funnel:[1,2,0,0],
-  title:'あなたは今、「会話の入り方」で止まっています',
-  reason:'会うところまでは進めています。ここは、多くの人が越えられない段階です。止まっているのはその先、会話の入り方のところ。回答では、会話の仕方について「緊張で頭が真っ白になる」を選んでいます。ただ、緊張すること自体は問題ではありません。緊張していても使える「入り方」を、まだ持っていないだけです。',
-  sigs:['会話中の反応：そもそも女性の反応がわからない','会話の仕方：緊張で頭が真っ白になる','最初の話題：緊張で頭が真っ白になる'],
-  fix:'おもしろい話をしようとしないこと。やることは、最初の30秒に言う言葉を1つ、あらかじめ決めておくだけです。毎回同じで構いません。入口さえ決まっていれば、頭が真っ白になっても会話は始まります。',
-  avoid:'会話が途切れたときに、あわてて質問でつながないこと。沈黙より、質問攻めのほうが嫌がられます。',
-  zoom:'「何を話すか」は本を読めばわかります。でも「それがあなたに実際に言える言葉かどうか」は、あなた一人では判断できません。無料Zoomでは、あなたが実際に口に出せる入り方を、その場で1つ作ってお渡しします。',
-  persona:'Q1=50代／Q3=20代／Q4=彼女／Q8=1人～5人／Q12=横並び／Q13=緊張で頭が真っ白になる／Q15=緊張で頭が真っ白になる／Q16=そもそも女性の反応がわからない／Q10=深い関係になったことがない'
+{
+"id": "2-A",
+"cat": "kaiwa",
+"type": "会話が苦手タイプ",
+"age": "50代",
+"pref": "20代",
+"goal": "彼女",
+"who": "会えてはいるが、2回目につながらない。または食事止まり。",
+"stuck": "あなたは、初対面女性と距離を縮める会話の流れがわかっていません。",
+"reason": "あなたは、女性と会うところまでは進めています。しかし、会話への苦手意識が強く、そもそも何を話したらいいのかがわかっていないようです。",
+"fix": "あなたがやることは、初対面の女性との、「正しい会話の流れ」を学ぶことです。初対面の女性との会話で大切なのは、面白い話をすることではありません。適切な会話の流れによって、スムーズに女性との距離を縮めることができるようになることです。",
+"avoid": "女性向けの会話ネタを覚えようとしたり、女性の本音を知ろうとすることです。女性に合わせようとすればするほど、恋愛はうまくいかなくなります。",
+"zoom": "会話が苦手な人ほど「会話ネタ」を増やそうとしますが、学ぶべきはネタではなく、距離を縮める会話の流れです。無料Zoom勉強会では、なぜ楽しい雑談だけでは【好みの年代】の女性との距離が縮まらないのか、距離が縮まる会話と何が違うのかを、実例をまじえてお伝えします。自分の会話に何が欠けていたのか、はっきりわかるはずです。",
+"sigs": [
+"会話中の女性の反応：そもそも女性の反応がわからない",
+"会話の仕方：緊張で頭が真っ白になる",
+"最初に話す話題：緊張で頭が真っ白になる"
+],
+"persona": "Q1=50代／Q3=20代／Q4=彼女／Q8=1人～5人／Q12=横並び／Q13=緊張で頭が真っ白になる／Q15=緊張で頭が真っ白になる／Q16=そもそも女性の反応がわからない／Q10=深い関係になったことがない"
 },
-{ id:'2-B', type:'kaiwa', sub:'nikaime', tab:'2回目につながらない',
-  lead:'50代のあなたが、20代の女性との「彼女」を目指す場合──',
-  funnel:[1,2,0,0],
-  title:'あなたは今、「2回目につなげる会話」で止まっています',
-  reason:'1回目は会えています。誘って、時間を取ってもらえているということです。止まっているのは別れ際。回答では、帰り際に話す話題として「自己紹介」を選んでいます。会って別れるまでの間に、女性が「この人ともう一度会いたい」と思う瞬間を作れていないサインです。楽しく終わった、と、また会いたい、は別物です。',
-  sigs:['帰り際の話題：自己紹介（次につながる話をしていない）','会話中の反応：一応やりとりしている感じ'],
-  fix:'帰り際の話題を1つ変えるだけです。その日いちばん盛り上がった話を持ち出して、「その続きは次に」と、その場で次の約束を取ってください。「また今度」ではなく、その場で。',
-  avoid:'別れ際に何も言わず、後からLINEで誘い直そうとしないこと。会っている間の温度は、当日を過ぎると必ず下がります。連絡で取り返そうとするほど、返事は遅くなります。',
-  zoom:'2回目が取れない原因は、たいてい本人が「うまくいった」と思っている場面にあります。自分の会話は、自分では採点できません。無料Zoomでは、あなたのデートの流れを聞いて、女性の気持ちがどこで下がったのかを特定し、次の約束の取り方までお伝えします。',
-  persona:'Q1=50代／Q3=20代／Q4=彼女／Q8=1人～5人／Q12=横並び／Q13=女性の好きそうな話題／Q14=自己紹介／Q16=一応やりとりはしている感じの反応／Q10=深い関係になったことがない'
+{
+"id": "2-B",
+"cat": "kaiwa",
+"type": "キャバクラ客にいそうなタイプ",
+"age": "50代",
+"pref": "20代",
+"goal": "彼女",
+"who": "1回は会えているが、帰り際に自己紹介や仕事の話をしていて次につながっていない人",
+"stuck": "あなたは、狙った女性を惚れさせる会話を理解できていません。",
+"reason": "あなたは女性と会話はできているようです。問題は会話の流れにあります。あなたが楽しく会話ができたと思っても、女性側からしてみれば、何も面白くない話だったかもしれません。キャバクラで盛り上がるような、自分語りや、仕事の話をしてしまっていませんか？",
+"fix": "あなたが最初にやることは、女性を惚れさせる会話テクニックを学ぶことです。ウンチク話や、仕事の話は、表面上は「すごいですね」と言われても、心の中では退屈されています。",
+"avoid": "2回目につながらないことを、自分の容姿やスペックのせいにしたり、相手のせいにしたりしないことです。男性のスペックや容姿は、若くて美人な女性ほど気にしていません。",
+"zoom": "2回目につながるかどうかは、別れ際に約束したかどうかではなく、会話中にどれだけ女性を惚れさせたかで決まっています。無料Zoom勉強会では、出会ってから別れるまでの間に女性の中で何が起きているのか、どの段階で惚れさせる仕掛けが必要なのかをお伝えします。【好みの年代】の女性となぜ2回目につながらなかったのか、腑に落ちるはずです。",
+"sigs": [
+"帰り際に話した話題：自己紹介（次につながる話をしていない）",
+"最初に話す話題：自己紹介・仕事の話",
+"会話中の女性の反応：一応やりとりしている感じ"
+],
+"persona": "Q1=50代／Q3=20代／Q4=彼女／Q8=1人～5人／Q12=横並び／Q13=自己紹介／Q14=自己紹介／Q16=一応やりとりはしている感じの反応／Q10=深い関係になったことがない　※旧2-C（面接化）を統合したパターン"
 },
-{ id:'2-C', type:'kaiwa', sub:'mensetsu', tab:'会話が面接化',
-  lead:'60代のあなたが、30代の女性との「彼女」を目指す場合──',
-  funnel:[1,2,0,0],
-  title:'あなたは今、「会話が面接になっていること」で止まっています',
-  reason:'会うところまでは進めています。止まっているのは話題の入り方です。回答では、最初に話す話題として「自己紹介」を選んでいます。これは面接と同じ順番です。事実を確認し合う会話では、女性は「答えている」だけで、楽しくはなれません。悪気なく、丁寧な人ほどこの形になります。',
-  sigs:['会話中の反応：一応やりとりしている感じ','会話の仕方：よく話題に詰まってしまう','最初の話題が面接型：自己紹介','席選び：対面席'],
-  fix:'話題を増やす必要はありません。順番を変えるだけです。仕事や経歴の話は、聞かれるまで自分から出さない。代わりに、相手が「そうそう」と言える軽い話から入ってください。まじめな話は、後半に回します。',
-  avoid:'相手の答えに、さらに質問を重ねないこと。質問→回答→質問が2往復続いた時点で、会話は面接に戻ります。答えが返ってきたら、まず自分の話を少し返してください。',
-  zoom:'やっかいなのは、面接になっている会話ほど、本人には「ちゃんと話せた」と感じられることです。無料Zoomでは、あなたの実際の会話の流れを聞いて、どこから面接に変わっているかを指摘し、入口の順番を組み直してお伝えします。',
-  persona:'Q1=60代／Q3=30代／Q4=彼女／Q8=1人～5人／Q12=対面席／Q13=自己紹介／Q14=お互いの共通点／Q15=よく話題に詰まってしまう／Q16=一応やりとりはしている感じの反応／Q10=深い関係になったことがない'
+{
+"id": "2-C",
+"cat": "kaiwa",
+"type": "脈あり勘違いタイプ",
+"age": "40代",
+"pref": "20代",
+"goal": "彼女",
+"who": "女性の反応が薄い・毎回違うなど安定せず、反応を見て話を変えられていない人",
+"stuck": "あなたに今必要なのは女性心理を学ぶことです。",
+"reason": "あなたは、女性と出会える行動力や、女性と会話をするコミュニケーション能力は十分にあるようです。しかし、女性があなたとまた会いたいと思うかどうかは、その場の楽しさではなく、どれだけ距離を縮められたか(どれだけあなたに惚れたか)です。",
+"fix": "あなたがまずやるべきことは、女性の本音と本能の違いや、その違いが行動や言葉にどう表れるかを学ぶことです。",
+"avoid": "会話中に女性が笑っていたり、あなたを褒めたりしたとしても、それで好意を持たれたと勘違いしないこと。本当にあなたに好意を持った女性は、もっと違う反応をします。",
+"zoom": "女性の表面的な態度を真に受けているうちは、恋愛はうまくいきません。無料Zoom勉強会では、女性の本音と本能がどう違い、脈のあるとき・ないときで反応がどう変わるのかを、実例をまじえてお伝えします。【好みの年代】の女性の「本当の脈あり」の見方が変わるはずです。",
+"sigs": [
+"会話中の女性の反応：毎回、女性の反応が違う",
+"会話の仕方：一方的に話す"
+],
+"persona": "Q1=40代／Q3=20代／Q4=彼女／Q8=1人～5人／Q12=横並び／Q13=女性の好きそうな話題／Q14=今後のこと／Q15=一方的に話す／Q16=毎回、女性の反応が違う／Q10=深い関係になったことがない　※旧2-Dからの繰り上げ"
 },
-{ id:'2-D', type:'kaiwa', sub:'reaction', tab:'反応が読めない',
-  lead:'40代のあなたが、20代の女性との「彼女」を目指す場合──',
-  funnel:[1,2,0,0],
-  title:'あなたは今、「女性の反応の読み方」で止まっています',
-  reason:'会って、話すところまではできています。止まっているのは、女性の反応の読み方です。回答では、会話中の女性の反応について「毎回、女性の反応が違う」を選んでいます。反応が読めないと、盛り上がっていない話を続けてしまい、逆に食いついている話を自分から終わらせてしまいます。持っている話題の数の問題ではありません。',
-  sigs:['会話中の反応：毎回違う（安定していない）','会話の仕方：一方的に話す'],
-  fix:'話しながら、1つだけ確かめてください。「今、相手は自分から言葉を足しているか」。足していれば続ける、「そうですね」で止まっていればやめて別の話へ。この判断ができるだけで、会話の空気は変わります。',
-  avoid:'用意してきた話を、最後まで話し切ろうとしないこと。準備した話ほど、途中でやめられなくなります。反応が薄いと感じた時点で、その話は捨ててください。',
-  zoom:'反応の読み方は、文章を読んで覚えるものではありません。実際の場面で「今のが薄い反応です」と指摘されて、初めてわかります。無料Zoomでは、あなたが実際にした会話を再現しながら、女性の反応がどこで変わっていたかをお伝えします。',
-  persona:'Q1=40代／Q3=20代／Q4=彼女／Q8=1人～5人／Q12=横並び／Q13=女性の好きそうな話題／Q14=今後のこと／Q15=一方的に話す／Q16=毎回、女性の反応が違う／Q10=深い関係になったことがない'
+{
+"id": "3-A",
+"cat": "kyori",
+"type": "数打ちゃ当たるタイプ",
+"age": "50代",
+"pref": "20代",
+"goal": "彼女",
+"who": "会話まではできているが、スキンシップをやったことがない／どこから触ればいいかわからない人",
+"stuck": "あなたは、正しいスキンシップの順番を知りません。",
+"reason": "あなたは、女性と出会って、会話するところまではできています。しかし、スキンシップをやっていません。スキンシップなしで女性との距離を縮めようとするのは、とても難しいことです。恋愛は、数打ちゃそのうち当たるなんて思っていませんか？",
+"fix": "あなたが最初にやることは、正しいスキンシップの順番と、正しいタイミングを学ぶことです。スキンシップを使わないと、恋愛の難易度が跳ね上がります。一方で、スキンシップは適当にやっては効果がないばかりか逆効果になりかねません。適切なタイミングで、適切な順番でスキンシップをするからこそ、絶大な効果が得られます。",
+"avoid": "自己流でスキンシップをすること。スキンシップは劇薬です。自己流でやるのはトラブルの元です。かならず、正しい順番とタイミングを学んでください。",
+"zoom": "スキンシップは、やみくもに始めると逆効果になる劇薬です。無料Zoom勉強会では、なぜスキンシップなしでは【好みの年代】の女性との関係が進まないのか、そして「正しい順番」から始めるとなぜ嫌がられないのか、その仕組みをお伝えします。自分が何から身につければいいのか、はっきりします。",
+"sigs": [
+"スキンシップ：やったことがない／どこから触ればいいかわからない",
+"関係が進んだ女性：これまで0人"
+],
+"persona": "Q1=50代／Q3=20代／Q4=彼女／Q8=1人～5人／Q14=今後のこと／Q16=興味深そうな反応／Q17=あまり得意ではない／Q18=わからない／Q19=スキンシップをやったことがない／Q10=深い関係になったことがない"
 },
-{ id:'3-A', type:'kyori', sub:'untouched', tab:'触れる一歩',
-  lead:'50代のあなたが、20代の女性との「彼女」を目指す場合──',
-  funnel:[1,1,2,0],
-  title:'あなたは今、「触れる一歩」で止まっています',
-  reason:'会って、話して、嫌がられていない。ここまで来ている人は、多くありません。止まっているのはその先、触れる・近づく一歩です。回答では、スキンシップについて「やったことがない」を選んでいます。これは度胸の問題ではなく、順番を勘違いしているだけです。多くの人が「仲良くなってから触る」と思っていますが、実際は逆で、少しずつ触れているから仲が近づきます。',
-  sigs:['スキンシップ：未着手（経験がない／どこから触るか分からない）','関係が進んだ女性：これまで0人'],
-  fix:'大きな一歩はいりません。次に会うときに、肩や手など、断られても関係が壊れない場所に一度だけ触れること。しかも、できるだけ早い時間に。早いほど自然になり、遅いほど不自然になります。',
-  avoid:'「相手が好きになってくれるまで待つ」をやめること。待っている間に、あなたは「安心できるいい人」の位置に固定されます。そこからは、何を言っても関係は動きません。',
-  zoom:'触れる・触れないは、勇気ではなく順番と時間の問題です。無料Zoomでは、あなたのデートの流れに合わせて、どの場面で、どこに、どう触れればいいかを具体的にお伝えします。',
-  persona:'Q1=50代／Q3=20代／Q4=彼女／Q8=1人～5人／Q14=今後のこと／Q16=興味深そうな反応／Q17=あまり得意ではない／Q18=わからない／Q19=スキンシップをやったことがない／Q10=深い関係になったことがない'
+{
+"id": "3-B",
+"cat": "kyori",
+"type": "恋愛自己流タイプ",
+"age": "50代",
+"pref": "20代",
+"goal": "セフレ",
+"who": "スキンシップはしているが、拒否される・よけられる・嫌そうな反応をされる人",
+"stuck": "あなたは、スキンシップの順番とタイミングが間違っています。",
+"reason": "あなたは、スキンシップはやっているようです。しかし、スキンシップの反応が悪いのは、あなたの年齢のせいでも、相性のせいでもありません。嫌がられたのは、触れた順番とタイミングです。同じ相手でも、順番とタイミングが変われば反応は変わります。そんなあなたは、正しい恋愛を教えてもらったことがないのかもしれません。",
+"fix": "正しいスキンシップの順番とタイミングを学ぶことです。やめることではありません。嫌がられたのは、あなたが触れたこと自体ではなく、触れた順番です。順番が変われば、同じ相手でも反応は変わります。",
+"avoid": "今までのやり方で無理に続けること。そして、反応が悪かったからとスキンシップを一切やめてしまうこと。やめてしまえば、関係はそこで止まります。直すのは順番とタイミングだけです。",
+"zoom": "嫌がられた原因は、触れたこと自体ではなく、順番とタイミングにあります。無料Zoom勉強会では、女性が受け入れるスキンシップと嫌がるスキンシップの違いがどこにあるのか、その仕組みを実例をまじえてお伝えします。【好みの年代】の女性に対して、これまで自分がどこで間違えていたのか、その場で特定できるはずです。",
+"sigs": [
+"スキンシップ後の女性の反応：身体をよけられる",
+"関係が進んだ女性：これまで0人"
+],
+"persona": "Q1=50代／Q2=既婚／Q3=20代／Q4=セフレ／Q8=6人～10人／Q14=今後のこと／Q16=興味深そうな反応／Q17=得意／Q18=キスをする／Q19=身体をよけられる／Q10=深い関係になったことがない"
 },
-{ id:'3-B', type:'kyori', sub:'response', tab:'触れると引かれる',
-  lead:'50代のあなたが、20代の女性との「セフレ」を目指す場合──',
-  funnel:[1,1,2,0],
-  title:'あなたは今、「触れる順番」で止まっています',
-  reason:'会って、話すところまではうまくいっています。回答では、触れたときの女性の反応について「身体をよけられる」を選んでいます。ここで多くの人が「自分はもう年だから」「嫌われたんだ」と受け取ります。違います。嫌がられたのは、あなた自身ではなく、触れた場所と順番です。同じ相手でも、順番が変われば反応は変わります。',
-  sigs:['スキンシップ後の反応：身体をよけられる','関係が進んだ女性：これまで0人'],
-  fix:'触るのをやめるのではなく、段階を戻してください。肩・手など、相手が断りやすい場所からやり直し、嫌がられなかったら次へ。1回のデートで進める段階は、1つまでで十分です。',
-  avoid:'一度引かれた触り方を、もう一度試さないこと。「あの日は機嫌が悪かっただけかも」は、ほぼ外れます。2回目で、相手は「この人は分かってくれない人」と判断します。',
-  zoom:'どこで順番を飛ばしたかは、自分では気づけません。本人は自然にやったつもりだからです。無料Zoomでは、あなたが実際にどこまで進んで、どこで引かれたのかを聞いたうえで、どの段階からやり直せばいいかをお伝えします。',
-  persona:'Q1=50代／Q2=既婚／Q3=20代／Q4=セフレ／Q8=6人～10人／Q14=今後のこと／Q16=興味深そうな反応／Q17=得意／Q18=キスをする／Q19=身体をよけられる／Q10=深い関係になったことがない'
+{
+"id": "3-C",
+"cat": "kyori",
+"type": "典型的な「いい人止まり」タイプ",
+"age": "40代",
+"pref": "20代",
+"goal": "彼女",
+"who": "出会い・会話・距離すべて問題ないのに、今月の成果が0人の人",
+"stuck": "あなたは、Sっ気を出せていません。",
+"reason": "出会えている。会話も続いている。触れても嫌がられていない。ここまで揃っているのに女性と深い関係になれないのは、あなたのSっ気が足りていない可能性が高いです。女性は、どんなに魅力がある男性でも、Sっ気がないと魅力を感じずに「いい人」認定してしまいます。",
+"fix": "Sっ気とは何か？どうやったらSっ気を出せるのか？どんなタイミングで、どのくらいSっ気を出せばいいのかを学ぶことです。",
+"avoid": "もっと優しくしよう、もっと女性の期待に応えようとすること。それをしても余計に「いい人」扱いされるだけで、恋愛対象からは外れていきます。",
+"zoom": "Sっ気は、日本人男性に最も足りていない恋愛の要素です。しかも、言葉で説明しきれるものではありません。何を話すかではなく、雰囲気が大事だからです。無料Zoom勉強会では、【好みの年代】の女性に刺さるSっ気とは何かを、実際の雰囲気ごと体感してもらいます。「いい人止まり」から抜け出す道筋が見えるはずです。",
+"sigs": [
+"出会い・会話・スキンシップはいずれも問題なし",
+"関係が進んだ女性：今月0人",
+"関係が進むまでの平均デート回数：3回以上"
+],
+"persona": "Q1=40代／Q3=20代／Q4=彼女／Q8=1人～5人／Q9=0人／Q10=3回以上／Q14=今後のこと／Q16=相手からスキンシップをしてくる／Q17=得意／Q18=手を繋ぐ／Q19=もっとしてほしそうにする"
 },
-{ id:'3-C', type:'kyori', sub:'closing', tab:'最後のひと押し',
-  lead:'40代のあなたが、20代の女性との「彼女」を目指す場合──',
-  funnel:[1,1,1,2],
-  title:'あなたは今、「最後のひと押し」で止まっています',
-  reason:'出会えている。会話も続いている。触れても嫌がられていない。ここまで揃っている人は、ごく一部です。それでも関係が進んでいないのは、最後の「誘いのひと言」を言っていないからです。回答を見るかぎり、足りないのは技術ではありません。良い雰囲気のまま、何も言わずに解散している。止まっているのは、ここだけです。',
-  sigs:['出会い・会話・距離まで進められている一方、関係が進んだ女性：今月0人','関係が進むまでの平均デート回数：3回以上'],
-  fix:'新しく覚えることはありません。関係を次に進めるひと言を、会う前に決めておいてください。その場で考えると、必ず言えません。決めておいて、言う。それだけです。',
-  avoid:'「もっといい雰囲気の日にしよう」と先送りしないこと。関係が動かない時間が続くと、女性の中であなたの位置は「そういう関係ではない人」に固まります。一度固まると、後から動かすほうが何倍も難しくなります。',
-  zoom:'あと一歩のところにいる人ほど、その一歩を間違えると全部を失います。無料Zoomでは、あなたの今の相手・今の関係に合わせて、いつ、どんな言葉で誘えばいいかを、そのまま使える形でお伝えします。',
-  persona:'Q1=40代／Q3=20代／Q4=彼女／Q8=1人～5人／Q9=0人／Q10=3回以上／Q14=今後のこと／Q16=相手からスキンシップをしてくる／Q17=得意／Q18=手を繋ぐ／Q19=もっとしてほしそうにする'
+{
+"id": "4-A",
+"cat": "goal",
+"type": "誠実系タイプ",
+"age": "50代",
+"pref": "20代",
+"goal": "彼女",
+"who": "すでに成果は出ているが、好みの女性・若い女性・ルックスの良い女性になるとうまくいかない人",
+"stuck": "あなたは誠実系（一般的なやり方）のため、若い美女が相手だとうまくいきません。",
+"reason": "あなたは、女性と深い関係になる力は、すでにあります。しかしそれは同年代女性か、ルックスのあまり良くない女性に限ったことではないでしょうか？そうなってしまうのは、あなたの恋愛手法が誠実系だからである可能性が高いです。決してあなた自身のルックスや、スペックの問題ではありません。",
+"fix": "あなたが最初にやることは、これまでのやり方（誠実系）を卒業して、非誠実系の恋愛テクニックを学ぶことです。",
+"avoid": "スペックを上げようとしたり、若い女性に受けそうなファッションをしたり、若い女性の話題に合わせようとすることです。そのような女性に媚びた態度は、ますます若い女性から格下扱いされて、恋愛がうまくいかなくなります。",
+"zoom": "誠実なアプローチは、同年代には通用しても、若い美女には通用しません。無料Zoom勉強会では、その理由と、脳科学とNLPをもとに女性の本能を揺らす「非誠実系」とは何かをお伝えします。【好みの年代】の美女を落とすために何を身につければいいのか、その地図が手に入ります。",
+"sigs": [
+"関係が進んだ女性：今月1人～5人（成果は出ている）",
+"あなたの悩み：好みの女性・若い女性・ルックスの良い女性だとうまくいかない"
+],
+"persona": "Q1=50代／Q3=20代／Q4=彼女／Q5=11人以上／Q8=6人～10人／Q9=1人～5人／Q20=若い女性・ルックスの良い女性となるとうまくいかない　※ゲート0（成果あり）→ideal"
+},
+{
+"id": "4-B",
+"cat": "goal",
+"type": "スペック勝負タイプ",
+"age": "40代",
+"pref": "20代",
+"goal": "彼女",
+"who": "すでに成果は出ているが、関係が続かない",
+"stuck": "あなたは女性に対して、格上になれていません。",
+"reason": "あなたは、理想の女性と深い関係になる力はあります。深い関係になれるのに続かないのは、あなたの魅力(スペック、容姿)が足りないからではなく、あなたに主導権がないからです。つまり、その女性にとっての格上の立場になれていないからです。",
+"fix": "あなたがやるべきことは、女性の主導権を握る為の「非誠実系」の会話テクニックです。女性にとっての格上の存在となり、主導権を握る事ができれば、女性と関係を続けるのは容易になります。",
+"avoid": "今まで以上にスペックを上げようとしたり、見た目、ファッションを改善しようとすることです。関係が続かないのは、あなたに魅力がないからでも、その女性との相性が悪いからでもありません。",
+"zoom": "関係が続かないのは魅力の問題ではなく、主導権の問題です。無料Zoom勉強会では、なぜ尽くすほど女性が離れていくのか、主導権を握っている男性は何が違うのかを、実例をまじえてお伝えします。【好みの年代】の女性との関係を続けるために何を変えればいいのか、はっきりわかるはずです。",
+"sigs": [
+"関係が進んだ女性：今月1人～5人（成果は出ている）",
+"あなたの悩み：ワンナイトはできるが、関係が続かない"
+],
+"persona": "Q1=40代／Q3=20代／Q4=彼女／Q5=11人以上／Q8=6人～10人／Q9=1人～5人／Q20=ワンナイトはできるが既存化ができない　※ゲート0（成果あり）→retain"
 }
 ];
 
-const FSTEPS=['女性と出会う','会話する','距離を縮める','関係が進む'];
-let cur=0, mode='one', showFunnel=true;
+const LABELS=['1｜あなたが止まっているところ','2｜そう判断した理由','3｜最初にやること',
+              '4｜やってはいけないこと','5｜無料Zoom勉強会でお伝えすること'];
+
+let fillPh=false;
 const esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 
-function funnelHTML(f){
-  if(!showFunnel) return '';
-  let rows='';
-  f.forEach((v,i)=>{
-    const cls=v===2?'here':(v===1?'done':'todo');
-    const mark=v===2?'●':(v===1?'✓':'－');
-    const stat=v===2?'← あなたは今ここ':(v===1?'できています':'');
-    rows+='<div class="frow '+cls+'"><span class="fmark">'+mark+'</span><span class="fname">'+FSTEPS[i]+'</span><span class="fstat">'+stat+'</span></div>';
-  });
-  return '<div class="funnel"><p class="fcap">あなたの現在地</p>'+rows+'</div>';
+/* 【　】を差し込むか、そのまま強調表示するか */
+function ph(text,d){
+  const map={'【年代】':d.age,'【好みの年代】':d.pref,'【なりたい関係】':d.goal};
+  return esc(text).replace(/【[^】]*】/g,m=>
+    '<span class="ph">'+esc(fillPh&&map[m]!==undefined?map[m]:m)+'</span>');
 }
 
-function resultHTML(d,compact){
-  const t=TYPES[d.type];
+function resultHTML(d){
+  const c=CATS[d.cat];
   let h='';
   h+='<p class="brand">─ 診断結果 ─</p>';
-  h+='<p class="rlead">'+esc(d.lead)+'</p>';
-  h+='<span class="badge" style="background:'+t.color+'">'+t.name+'</span>';
-  h+=funnelHTML(d.funnel);
-  h+='<div class="rcard"><p class="rlabel">1｜あなたが止まっているところ</p><p class="rtitle">'+esc(d.title)+'</p></div>';
-  h+='<div class="rcard"><p class="rlabel">2｜そう判断した理由</p><p>'+esc(d.reason)+'</p>'
-    +'<p class="sigcap">▼ 判断のもとになった、あなたの回答</p><ul class="sigs">'
-    +d.sigs.map(s=>'<li>'+esc(s)+'</li>').join('')+'</ul></div>';
-  h+='<div class="rcard"><p class="rlabel">3｜最初にやること</p><p>'+esc(d.fix)+'</p></div>';
-  h+='<div class="rcard avoidbox"><p class="rlabel">4｜やってはいけないこと</p><p>'+esc(d.avoid)+'</p></div>';
-  h+='<div class="rcard zoombox"><p class="rlabel">5｜無料Zoomでお伝えすること</p><p>'+esc(d.zoom)+'</p></div>';
-  h+='<button class="btn" style="margin-top:18px" onclick="alert(\'本番: Zoom予約ページへ遷移（URL未定）\')">無料Zoomの日程を確認する</button>';
-  h+='<p class="cta-note">※モックのため仮ボタンです（遷移先URLは未決事項）</p>';
-  h+='<details class="dev"><summary>この結果になる回答（確認用・本番では出ません）</summary>'
-    +'<div class="devpanel"><b>'+d.id+' '+t.name+'／sub: '+d.sub+'（'+esc(d.tab)+'）</b><br>'+esc(d.persona)+'</div></details>';
+  h+='<div class="badgewrap"><span class="badgelabel">あなたのつまずき</span>'
+    +'<span class="badge" style="background:'+c.color+'">'+esc(c.name)+'</span>'
+    +'<span class="typename" style="color:'+c.color+'">'+esc(d.type)+'</span></div>';
+  h+='<div class="rcard"><p class="rlabel">'+LABELS[0]+'</p><p class="rtitle">'+ph(d.stuck,d)+'</p></div>';
+  h+='<div class="rcard"><p class="rlabel">'+LABELS[1]+'</p><p>'+ph(d.reason,d)+'</p></div>';
+  h+='<div class="rcard"><p class="rlabel">'+LABELS[2]+'</p><p>'+ph(d.fix,d)+'</p></div>';
+  h+='<div class="rcard avoidbox"><p class="rlabel">'+LABELS[3]+'</p><p>'+ph(d.avoid,d)+'</p></div>';
+  h+='<div class="rcard zoombox"><p class="rlabel">'+LABELS[4]+'</p><p>'+ph(d.zoom,d)+'</p></div>';
+  h+='<button class="btn" style="margin-top:18px" onclick="alert(\'本番: Zoom勉強会の予約ページへ遷移（URL未定）\')">無料Zoom勉強会の日程を確認する</button>';
   return h;
 }
 
-function renderTabs(){
-  const el=document.getElementById('tabs');
-  let h='',prev='';
-  D.forEach((d,i)=>{
-    if(prev&&prev!==d.type) h+='<div class="tabsep"></div>';
-    prev=d.type;
-    const on=(mode==='one'&&i===cur)?' on '+TYPES[d.type].cls:'';
-    h+='<button class="tab'+on+'" onclick="go('+i+')"><span class="tn" style="color:'+((mode==='one'&&i===cur)?'#fff':TYPES[d.type].color)+'">'+d.id+'</span>'+esc(d.tab)+'</button>';
-  });
-  el.innerHTML=h;
-}
-
 function render(){
-  const st=document.getElementById('stage');
-  if(mode==='one'){
-    st.innerHTML='<div class="wrap">'+resultHTML(D[cur])+'</div>';
-    document.getElementById('navfoot').style.display='flex';
-    document.getElementById('cnt').textContent=(cur+1)+' / '+D.length;
-    document.getElementById('prev').disabled=(cur===0);
-    document.getElementById('next').disabled=(cur===D.length-1);
-    document.body.style.paddingBottom='80px';
-    window.scrollTo(0,0);
-  }else{
-    let h='<div class="grid">';
-    D.forEach(d=>{
-      const t=TYPES[d.type];
-      h+='<div class="gcard"><div class="ghead" style="background:'+t.color+'">'+d.id+'｜'+t.name+'　'+esc(d.tab)+'</div>'
-        +'<div class="gbody"><div class="wrap">'+resultHTML(d)+'</div></div></div>';
-    });
-    st.innerHTML=h+'</div>';
-    document.getElementById('navfoot').style.display='none';
-    document.body.style.paddingBottom='20px';
-  }
-  renderTabs();
+  let h='<div class="grid">';
+  D.forEach(d=>{
+    const c=CATS[d.cat];
+    h+='<div class="gcard"><div class="ghead" style="background:'+c.color+'">'
+      +d.id+'｜'+esc(c.name)+'　'+esc(d.type)+'</div>'
+      +'<div class="gbody"><div class="wrap">'+resultHTML(d)+'</div></div></div>';
+  });
+  document.getElementById('stage').innerHTML=h+'</div>';
 }
-function go(i){ if(mode!=='one'){mode='one';document.getElementById('m1').classList.add('on');document.getElementById('m2').classList.remove('on');} cur=i; render(); }
-function step(n){ const t=cur+n; if(t>=0&&t<D.length){cur=t;render();} }
-function setMode(m){
-  mode=m;
-  document.getElementById('m1').classList.toggle('on',m==='one');
-  document.getElementById('m2').classList.toggle('on',m==='all');
-  render();
-}
-function toggleFunnel(){ showFunnel=!showFunnel; document.getElementById('fnstate').textContent=showFunnel?'ON':'OFF'; render(); }
-document.addEventListener('keydown',e=>{
-  if(mode!=='one') return;
-  if(e.key==='ArrowRight') step(1);
-  if(e.key==='ArrowLeft') step(-1);
-});
+function togglePh(){ fillPh=!fillPh; document.getElementById('phstate').textContent=fillPh?'ON':'OFF'; render(); }
 render();
 </script>
 </body>
